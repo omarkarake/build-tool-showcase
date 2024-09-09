@@ -10,6 +10,16 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/, // Apply Babel on JS files
+        exclude: /node_modules/, // Exclude node_modules folder
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'], // Use preset-env for browser compatibility
+          },
+        },
+      },
+      {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'], // Loaders for Sass
       },
