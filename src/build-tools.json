@@ -1,8 +1,7 @@
 [
-    { "name": "Webpack" },
-    { "name": "Parcel" },
-    { "name": "Rollup" },
-    { "name": "Gulp" },
-    { "name": "Grunt" }
-  ]
-  
+  { "name": "webpack" },
+  { "name": "parcel" },
+  { "name": "rollup" },
+  { "name": "gulp" },
+  { "name": "grunty" }
+]
