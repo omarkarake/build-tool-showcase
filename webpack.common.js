@@ -7,6 +7,7 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  devtool: 'cheap-module-source-map', // This will be easier debugging for production
   module: {
     rules: [
       {
