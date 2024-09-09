@@ -1,21 +1,36 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: 'bundle.js',
+    filename: isProd ? '[name].[contenthash].js' : '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    clean: true, // Cleans the output folder before each build
   },
-  devtool: 'cheap-module-source-map',
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist'), // Serve files from the 'dist' directory
+  devtool: isProd ? 'source-map' : 'cheap-module-source-map',
+  mode: isProd ? 'production' : 'development',
+  optimization: {
+    minimize: isProd,
+    minimizer: [
+      new TerserPlugin(),
+      new CssMinimizerPlugin(),
+    ],
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
     },
-    port: 8080, // The port on which the server will run
-    hot: true, // Enable hot module replacement
-    open: true, // Automatically open the browser when the server starts
-    compress: true, // Enable gzip compression for everything served
   },
   module: {
     rules: [
@@ -31,7 +46,11 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [
+          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
       },
       {
         test: /\.json$/,
@@ -43,7 +62,26 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
+      minify: isProd && {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+      },
     }),
-  ],
-  mode: 'development',
+    isProd && new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css',
+    }),
+  ].filter(Boolean),
+
+  // Add devServer configuration here
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
+    compress: true,
+    port: 9000, // Specify the port where the server will run
+    open: true, // Automatically open the browser when the server starts
+    hot: true,  // Enable hot module replacement
+  },
 };
