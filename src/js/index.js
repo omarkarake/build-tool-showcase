@@ -14,12 +14,16 @@ buildTools.forEach((tool) => {
 });
 
 document.getElementById("loadLodash").addEventListener("click", async () => {
-  const { default: _ } = await import("lodash"); // Dynamically load lodash
-  console.log(_.capitalize("dynamic lodash loading"));
+  try {
+    const { default: _ } = await import("lodash"); // Dynamically load lodash
+    console.log(_.capitalize("dynamic lodash loading"));
 
-  // Capitalize the existing list items
-  const listItems = buildToolsList.getElementsByTagName("li");
-  for (let item of listItems) {
-    item.textContent = _.capitalize(item.textContent);
+    // Capitalize the existing list items
+    const listItems = buildToolsList.getElementsByTagName("li");
+    for (let item of listItems) {
+      item.textContent = _.capitalize(item.textContent);
+    }
+  } catch (error) {
+    console.error("Error loading lodash or capitalizing list items:", error);
   }
 });
