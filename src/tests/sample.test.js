@@ -1,5 +1,5 @@
 import { capitalize } from 'lodash';
-import buildTools from '../build-tools.json';
+import buildTools from '../data/build-tools.json';
 
 // Mock DOM elements
 document.body.innerHTML = `

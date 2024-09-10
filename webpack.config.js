@@ -7,7 +7,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/js/index.js',
   output: {
     filename: isProd ? '[name].[contenthash].js' : '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),

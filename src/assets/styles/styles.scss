@@ -1,0 +1,113 @@
+// src/styles.scss
+$primary-color: #4CAF50; // Green
+$secondary-color: #FF5722; // Orange
+$background-color: #f4f4f4; // Light grey
+$text-color: #333; // Dark grey
+$button-color: #FF5722; // Orange
+$button-hover-color: darken($button-color, 10%);
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: $background-color;
+  color: $text-color;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: $primary-color;
+  color: white;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+main {
+  padding: 2rem;
+  text-align: center;
+}
+
+ul#build-tools {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul#build-tools li {
+  background-color: white;
+  margin: 0.5rem 0;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button#loadLodash {
+  background-color: $button-color;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button#loadLodash:hover {
+  background-color: $button-hover-color;
+}
+
+footer {
+  background-color: $secondary-color;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  header {
+    padding: 1rem;
+  }
+
+  main {
+    padding: 1rem;
+  }
+
+  ul#build-tools li {
+    padding: 0.5rem;
+  }
+
+  button#loadLodash {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  footer {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 0.5rem;
+  }
+
+  main {
+    padding: 0.5rem;
+  }
+
+  ul#build-tools li {
+    padding: 0.25rem;
+  }
+
+  button#loadLodash {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  footer {
+    padding: 0.25rem;
+  }
+}

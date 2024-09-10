@@ -42,5 +42,25 @@
   },
   "dependencies": {
     "lodash": "^4.17.21"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2021": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "ecmaVersion": 12,
+      "sourceType": "module"
+    },
+    "rules": {
+      "indent": ["error", 2],
+      "quotes": ["error", "double"],
+      "semi": ["error", "always"],
+      "no-unused-vars": ["warn"],
+      "no-console": "off",
+      "eqeqeq": ["error", "always"],
+      "curly": ["error", "all"]
+    }
   }
 }
