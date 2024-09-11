@@ -1,5 +1,7 @@
 # Build Tool Showcase
 
+hosted link: https://master--splendid-eclair-ebbcd3.netlify.app/
+
 ## Objective
 Create a small web application that demonstrates the use of various build tools and package managers. This project will help assess your understanding of build processes, dependency management, and basic web development concepts.
 
